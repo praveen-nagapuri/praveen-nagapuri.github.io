@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praveen Nagapuri - Java Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header/Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero .title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero .summary {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 15px 0;
+        }
+
+        .nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .experience-header h3 {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+        }
+
+        .experience-date {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .company-name {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .project-name {
+            background-color: var(--bg-light);
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .responsibilities {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .responsibilities li {
+            padding-left: 25px;
+            margin-bottom: 8px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .responsibilities li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Education Section */
+        .education-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .education-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .education-card .degree {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .education-card .year {
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .title {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-content {
+                gap: 20px;
+                font-size: 0.9rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Praveen Nagapuri</h1>
+            <p class="title">Senior Java Developer | Spring Boot & Microservices Specialist</p>
+            <p class="summary">
+                Experienced Java Developer with 4.6+ years of expertise in Banking and E-commerce applications. 
+                Specialized in Spring Boot, Microservices architecture, and RESTful web services with a proven track record 
+                of delivering scalable solutions for enterprise clients.
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                    <span>praveen.nagapuri7@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                    <span>+91 9553535004</span>
+                </div>
+                <div class="contact-item">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                    <span>Hyderabad, India</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+        </div>
+    </nav>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java 1.8</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring</span>
+                        <span class="skill-tag">Spring MVC</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Microservices</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Testing Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Cucumber</span>
+                        <span class="skill-tag">Selenium</span>
+                        <span class="skill-tag">Mockito</span>
+                        <span class="skill-tag">PowerMockito</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>ORM & Data Access</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Hibernate</span>
+                        <span class="skill-tag">JPA</span>
+                        <span class="skill-tag">Spring Data JPA</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Web Services</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">SOAP</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Development Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Eclipse</span>
+                        <span class="skill-tag">IntelliJ IDEA</span>
+                        <span class="skill-tag">STS</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Maven</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>DevOps & Monitoring</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Splunk</span>
+                        <span class="skill-tag">Elastic Search</span>
+                        <span class="skill-tag">Kibana</span>
+                        <span class="skill-tag">Log4J</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>API Testing</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">SOAP UI</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Application Servers</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Apache Tomcat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline">
+                <!-- Current Role -->
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Software Engineer</h3>
+                            <p class="company-name">Virtusa Consulting Services Private Limited, Hyderabad</p>
+                            <span class="project-name">Client: JP Morgan Chase | Project: Gateway Services</span>
+                        </div>
+                        <span class="experience-date">April 2021 - Present</span>
+                    </div>
+                    <ul class="responsibilities">
+                        <li>Developed and maintained RESTful & SOAP web services for enterprise banking applications</li>
+                        <li>Participated in complete SDLC from analysis, specification, design, implementation to testing</li>
+                        <li>Monitored Splunk logs to identify, diagnose, and resolve production issues efficiently</li>
+                        <li>Collaborated with QA team to design comprehensive BDD testing scenarios using Cucumber</li>
+                        <li>Analyzed requirements and delivered solutions within established timelines</li>
+                        <li>Actively participated in client feedback sessions and resolved production incidents</li>
+                        <li>Supported production deployments with continuous monitoring for system stability</li>
+                        <li>Performed thorough unit testing using Mockito and PowerMockito before QA handoff</li>
+                    </ul>
+                </div>
+
+                <!-- Previous Role -->
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Software Engineer</h3>
+                            <p class="company-name">Samhitha Agro Tech Solutions Private Limited, Hyderabad</p>
+                            <span class="project-name">Project: Green Farm Market (www.greenfarmmarket.in)</span>
+                        </div>
+                        <span class="experience-date">October 2019 - April 2021</span>
+                    </div>
+                    <ul class="responsibilities">
+                        <li>Worked in a startup environment developing e-commerce platform using Angular 5, Java, MySQL, and Elastic Search</li>
+                        <li>Designed, developed, and maintained complex web applications with focus on scalability and performance</li>
+                        <li>Implemented full-stack solutions handling both frontend and backend development</li>
+                        <li>Conducted software analysis, programming, testing, and debugging activities</li>
+                        <li>Created comprehensive test documentation including test strategies and test plans</li>
+                        <li>Participated in functional and manual testing to ensure product quality</li>
+                        <li>Recommended and implemented process improvements to enhance development efficiency</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <h3>CMR Institute of Technology</h3>
+                <p class="degree">Bachelor of Technology in Electronics and Communication Engineering</p>
+                <p class="year">Graduated: 2017 | Hyderabad, India</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Praveen Nagapuri. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Java Developer | Spring Boot Specialist | Microservices Architect</p>
+        </div>
+    </footer>
+</body>
+</html>
